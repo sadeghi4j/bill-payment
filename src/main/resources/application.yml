@@ -1,0 +1,64 @@
+server:
+    port: 8080
+    shutdown: immediate
+    tomcat:
+        # this is default value for tomcat and could be increased
+        max-connections: 8192
+spring:
+    datasource:
+        url: jdbc:h2:mem:imdb;DB_CLOSE_ON_EXIT=FALSE;INIT=CREATE SCHEMA IF NOT EXISTS mobilepayment
+        username: sa
+        password: sa
+        driver-class-name: org.h2.Driver
+#        hikari:
+#            data-source-properties:
+#                useConfigs: maxPerformance
+#                rewriteBatchedStatements: true
+#                useServerPrepStmts: false
+#            maximum-pool-size: 8
+
+
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: none
+
+        database-platform: org.hibernate.dialect.H2Dialect
+        defer-datasource-initialization: true
+        properties:
+            dialect: org.hibernate.dialect.H2Dialect
+#            hibernate:
+#                jdbc:
+#                    batch_size: 1000
+#                order_inserts: true
+#                order_updates: true
+        generate-ddl: true
+        open-in-view: off
+
+    h2:
+        console:
+            enabled: true
+    sql:
+        init:
+            mode: always
+            data-locations: classpath:data.sql
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: '*'
+
+resilience4j:
+    retry:
+        instances:
+            getExchangeRate:
+                maxRetryAttempts: 3
+                waitDuration: 1s
+                enableExponentialBackoff: true
+                exponentialBackoffMultiplier: 2
+
+#debug: true
+application:
+    jwt:
+        secret: techgeeknext
