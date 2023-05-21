@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.sadeghi</groupId>
-	<artifactId>oauth-server</artifactId>
+	<artifactId>bill-payment</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>oauth-server</name>
+	<name>bill-payment</name>
 	<description>An assignment project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>

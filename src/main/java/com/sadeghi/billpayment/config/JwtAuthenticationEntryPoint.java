@@ -1,4 +1,4 @@
-package com.sadeghi.oauthserver.config;
+package com.sadeghi.billpayment.config;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

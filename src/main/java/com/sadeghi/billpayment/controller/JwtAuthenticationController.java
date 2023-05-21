@@ -1,8 +1,8 @@
-package com.sadeghi.oauthserver.controller;
+package com.sadeghi.billpayment.controller;
 
-import com.sadeghi.oauthserver.config.JwtTokenUtil;
-import com.sadeghi.oauthserver.model.JwtRequest;
-import com.sadeghi.oauthserver.model.JwtResponse;
+import com.sadeghi.billpayment.config.JwtTokenUtil;
+import com.sadeghi.billpayment.model.JwtRequest;
+import com.sadeghi.billpayment.model.JwtResponse;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;

@@ -1,4 +1,4 @@
-package com.sadeghi.oauthserver;
+package com.sadeghi.billpayment;
 
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.TestInstance;
@@ -14,7 +14,7 @@ import org.springframework.test.context.TestPropertySource;
  * @author Ali Sadeghi
  * Created at 2022/05/02 - 2:26 PM
  */
-@SpringBootTest(classes = OAuthApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(classes = BillPaymentApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @AutoConfigureMockMvc
 @ActiveProfiles("h2")

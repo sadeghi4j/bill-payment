@@ -1,4 +1,4 @@
-package com.sadeghi.oauthserver.entity;
+package com.sadeghi.billpayment.entity;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;

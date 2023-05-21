@@ -1,4 +1,4 @@
-package com.sadeghi.oauthserver.config;
+package com.sadeghi.billpayment.config;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -1,4 +1,4 @@
-package com.sadeghi.oauthserver.exception;
+package com.sadeghi.billpayment.exception;
 
 /**
  * Description of file goes here

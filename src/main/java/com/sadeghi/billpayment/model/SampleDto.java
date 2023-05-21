@@ -1,4 +1,4 @@
-package com.sadeghi.oauthserver.model;
+package com.sadeghi.billpayment.model;
 
 import lombok.Data;
 

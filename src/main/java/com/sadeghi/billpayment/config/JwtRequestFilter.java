@@ -1,6 +1,6 @@
-package com.sadeghi.oauthserver.config;
+package com.sadeghi.billpayment.config;
 
-import com.sadeghi.oauthserver.service.JwtUserDetailsService;
+import com.sadeghi.billpayment.service.JwtUserDetailsService;
 import io.jsonwebtoken.ExpiredJwtException;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
