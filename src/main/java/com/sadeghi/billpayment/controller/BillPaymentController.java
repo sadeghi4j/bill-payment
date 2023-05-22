@@ -4,15 +4,14 @@ import com.sadeghi.billpayment.entity.Bill;
 import com.sadeghi.billpayment.exception.BillNotFoundException;
 import com.sadeghi.billpayment.mapper.DTOMapper;
 import com.sadeghi.billpayment.model.BillDto;
+import com.sadeghi.billpayment.model.BillPayDto;
 import com.sadeghi.billpayment.model.BillType;
 import com.sadeghi.billpayment.service.BillService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Optional;
 
 /**
@@ -32,6 +31,12 @@ public class BillPaymentController {
     public BillDto billInquiry(@PathVariable BillType billType, @PathVariable String identifier) {
         Optional<Bill> optionalBill = billService.findBill(billType, identifier);
         return optionalBill.map(DTOMapper.INSTANCE::convert).orElseThrow(BillNotFoundException::new);
+    }
+
+    @PostMapping(value = "/bill/pay")
+    public void billPay(@Valid @RequestBody BillPayDto billPayDto) {
+        log.info("payment : {}", billPayDto);
+        billService.billPay(billPayDto);
     }
 
 }

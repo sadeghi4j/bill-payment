@@ -18,4 +18,6 @@ public interface BillRepository extends JpaRepository<Bill, Long> {
 
     Optional<Bill> findByPhoneNumber(String phoneNumber);
 
+    Optional<Bill> findByBillIdAndPayId(String billId, String payId);
+
 }

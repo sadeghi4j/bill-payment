@@ -10,9 +10,13 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Description of file goes here
@@ -34,6 +38,14 @@ public class ExceptionAdvice {
         log.error(exception.getMessage(), exception);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(HttpStatus.BAD_REQUEST.value(),
                 messageSource.getMessage(exception.getExceptionCode().name(), null, LocaleContextHolder.getLocale())));
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Map<String, String>> handleMethodArgumentNotValid(MethodArgumentNotValidException exception) {
+        log.error(exception.getMessage(), exception);
+        Map<String, String> errorMap = new HashMap<>();
+        exception.getBindingResult().getFieldErrors().forEach(error -> errorMap.put(error.getField(),error.getDefaultMessage()));
+        return new ResponseEntity<>(errorMap, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(RuntimeException.class)
