@@ -20,8 +20,7 @@ import javax.persistence.*;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(
-        indexes = {@Index(columnList = "billId, payId")},
-        uniqueConstraints = @UniqueConstraint(name = "UNIQUE_BILL_BILL_ID_PAY_ID", columnNames = {"billId, payId"})
+        indexes = {@Index(columnList = "billId")}
 )
 public class Bill extends BaseEntity<Long> {
 
@@ -31,11 +30,11 @@ public class Bill extends BaseEntity<Long> {
     @Column(nullable = false, length = 13)
     String payId;
 
-    @Column(nullable = false)
-    Integer amount;
-
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 15)
     BillType billType;
+
+    @Column(nullable = false)
+    Integer amount;
 
 }

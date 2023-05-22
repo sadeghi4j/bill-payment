@@ -4,6 +4,8 @@ import com.sadeghi.billpayment.entity.Bill;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 /**
  * @author Ali Sadeghi
  * Created at 5/21/23 - 8:21 PM
@@ -11,5 +13,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BillRepository extends JpaRepository<Bill, Long> {
+
+    Optional<Bill> findBillByBillId(String billId);
 
 }

@@ -1,11 +1,14 @@
 package com.sadeghi.billpayment.service;
 
+import com.sadeghi.billpayment.entity.Bill;
 import com.sadeghi.billpayment.repository.BillRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 /**
  * @author Ali Sadeghi
@@ -19,5 +22,9 @@ import org.springframework.stereotype.Service;
 public class BillService {
 
     final BillRepository billRepository;
+
+    public Optional<Bill> billInquiry(String billId) {
+        return billRepository.findBillByBillId(billId);
+    }
 
 }

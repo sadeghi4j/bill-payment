@@ -7,7 +7,6 @@ package com.sadeghi.billpayment.exception;
  * Created at 2022/10/29 - 12:14 AM
  */
 
-public class BaseException extends RuntimeException {
-
+public abstract class BaseException extends RuntimeException {
 
 }

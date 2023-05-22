@@ -19,13 +19,13 @@ import javax.persistence.*;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Table(
-        indexes = {@Index(columnList = "")},
-        uniqueConstraints = @UniqueConstraint(name = "UNIQUE_PAYMENT_BILL_ID_PAY_ID", columnNames = {"billId, payId"})
+        indexes = {@Index(columnList = "billId, payId")},
+        uniqueConstraints = @UniqueConstraint(name = "UNIQUE_PAYMENT_BILL_ID_PAY_ID", columnNames = {"billId", "payId"})
 )
 public class Payment extends BaseEntity<Long> {
 
 
-    @Column(nullable = false, unique = true, length = 13)
+    @Column(nullable = false, length = 13)
     String billId;
 
     @Column(nullable = false, length = 13)
