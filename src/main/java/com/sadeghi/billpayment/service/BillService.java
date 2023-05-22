@@ -1,6 +1,7 @@
 package com.sadeghi.billpayment.service;
 
 import com.sadeghi.billpayment.entity.Bill;
+import com.sadeghi.billpayment.model.BillType;
 import com.sadeghi.billpayment.repository.BillRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -23,8 +24,17 @@ public class BillService {
 
     final BillRepository billRepository;
 
-    public Optional<Bill> billInquiry(String billId) {
-        return billRepository.findBillByBillId(billId);
+    public Optional<Bill> findBillByBillId(String billId) {
+        return billRepository.findByBillId(billId);
     }
+
+    public Optional<Bill> findBillByPhoneNumber(String phoneNumber) {
+        return billRepository.findByPhoneNumber(phoneNumber);
+    }
+
+    public Optional<Bill> findBill(BillType billType, String identifier) {
+        return billType == BillType.MOBILE_PHONE ? findBillByPhoneNumber(identifier) : findBillByBillId(identifier);
+    }
+
 
 }

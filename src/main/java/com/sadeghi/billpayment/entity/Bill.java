@@ -34,6 +34,9 @@ public class Bill extends BaseEntity<Long> {
     @Column(nullable = false, length = 15)
     BillType billType;
 
+    @Column(unique = true, length = 11)
+    String phoneNumber;
+
     @Column(nullable = false)
     Integer amount;
 
