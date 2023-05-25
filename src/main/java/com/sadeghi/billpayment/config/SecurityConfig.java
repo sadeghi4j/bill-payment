@@ -1,5 +1,8 @@
 package com.sadeghi.billpayment.config;
 
+ import io.swagger.v3.oas.annotations.enums.SecuritySchemeIn;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -26,6 +29,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
+@SecurityScheme(
+        name = "Bearer Authorization",
+        type = SecuritySchemeType.HTTP,
+        bearerFormat = "JWT",
+        scheme = "bearer",
+        in = SecuritySchemeIn.HEADER
+)
 public class SecurityConfig {
 
     final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
@@ -46,6 +56,7 @@ public class SecurityConfig {
         httpSecurity.csrf().disable()
                 // dont authenticate this particular request
                 .authorizeRequests().antMatchers("/authenticate").permitAll()
+                .antMatchers("/v3/api-docs", "/v3/api-docs/swagger-config", "/swagger-resources/**", "/swagger-ui/**").permitAll()
                 // all other requests need to be authenticated
                 .anyRequest().authenticated()
                 // make sure we use stateless session; session won't be used to

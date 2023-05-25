@@ -51,4 +51,4 @@ resilience4j:
 #debug: true
 application:
     jwt:
-        secret: techgeeknext
+        secret: username

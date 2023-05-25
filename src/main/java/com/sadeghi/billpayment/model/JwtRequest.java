@@ -1,25 +1,17 @@
 package com.sadeghi.billpayment.model;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.experimental.FieldDefaults;
+import io.swagger.v3.oas.annotations.media.Schema;
 
-import java.io.Serializable;
+import javax.validation.constraints.NotNull;
 
 /**
  * @author Ali Sadeghi
  * Created at 5/18/23 - 8:12 PM
  */
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@FieldDefaults(level = AccessLevel.PRIVATE)
-public class JwtRequest implements Serializable {
+@Schema(description = "مدل ورودی احراز هویت")
+public record JwtRequest(
+        @Schema(description = "نام کاربری") @NotNull String username, @Schema(description = "کلمه عبور") @NotNull String password
 
-    String username;
-    String password;
-
+) {
 }
