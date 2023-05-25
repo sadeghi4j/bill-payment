@@ -5,6 +5,7 @@ import com.sadeghi.billpayment.entity.Payment;
 import com.sadeghi.billpayment.exception.BillAlreadyPaidException;
 import com.sadeghi.billpayment.exception.BillNotFoundException;
 import com.sadeghi.billpayment.exception.BillPaymentException;
+import com.sadeghi.billpayment.mapper.DTOMapper;
 import com.sadeghi.billpayment.model.BillPayDto;
 import com.sadeghi.billpayment.model.BillType;
 import com.sadeghi.billpayment.repository.BillRepository;
@@ -55,7 +56,7 @@ public class BillService {
         }
 
         try {
-            Payment payment = Payment.builder().billId(bill.getBillId()).payId(bill.getPayId()).billType(bill.getBillType()).amount(bill.getAmount()).build();
+            Payment payment = DTOMapper.INSTANCE.convertBillToPayment(bill);
             paymentService.save(payment);
         } catch (DataIntegrityViolationException e) {
             log.error(e);
