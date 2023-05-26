@@ -28,7 +28,7 @@ public class AccountService {
 
     final AccountRepository accountRepository;
 
-    Optional<Account> findByUsername(String username) {
+    public Optional<Account> findByUsername(String username) {
         return accountRepository.findByUsername(username);
     }
 
