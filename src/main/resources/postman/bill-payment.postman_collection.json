@@ -1,0 +1,123 @@
+{
+	"info": {
+		"_postman_id": "5f10bda9-293f-4845-b2f4-fdfb9ea9af20",
+		"name": "bill-payment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "authenticate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"username\",\n    \"password\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/authenticate",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bill Inquiry",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VybmFtZSIsImV4cCI6MTY4NTE1OTU5NywiaWF0IjoxNjg1MTQxNTk3fQ.jEA5vHs-9yVH5hGDzIw0cN7aRTZT_LByVWebLNv7M5A4PsfE6exP_4K9Xx6EmCca03Wo9HZbVhjMvZcw1qRrFA",
+						"type": "default"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "fa-IR",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"billId\": \"1\",\n    \"payId\": \"1\",\n    \"accountNumber\": \"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/bill/inquiry/WATER/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"bill",
+						"inquiry",
+						"WATER",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bill Pay",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VybmFtZSIsImV4cCI6MTY4NTE1OTU5NywiaWF0IjoxNjg1MTQxNTk3fQ.jEA5vHs-9yVH5hGDzIw0cN7aRTZT_LByVWebLNv7M5A4PsfE6exP_4K9Xx6EmCca03Wo9HZbVhjMvZcw1qRrFA",
+						"type": "default"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "fa-IR",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"billId\": \"1\",\n    \"payId\": \"1\",\n    \"accountNumber\": \"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/bill/pay",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"bill",
+						"pay"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
