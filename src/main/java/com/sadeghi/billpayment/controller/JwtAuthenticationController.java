@@ -48,7 +48,7 @@ public class JwtAuthenticationController {
     @PostMapping(value = "/authenticate", produces = "application/json", consumes = "application/json")
     public ResponseEntity<JwtResponse> generateAuthenticationToken(
 
-            @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Book to add.", required = true,
+            @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "Username and Password", required = true,
                     content = @Content(schema = @Schema(implementation = JwtRequest.class)))
 
             @RequestBody JwtRequest authenticationRequest) {
