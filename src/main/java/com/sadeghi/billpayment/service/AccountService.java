@@ -3,6 +3,7 @@ package com.sadeghi.billpayment.service;
 import com.sadeghi.billpayment.entity.Account;
 import com.sadeghi.billpayment.exception.AccountIsNotSelfieException;
 import com.sadeghi.billpayment.exception.AccountNotFoundException;
+import com.sadeghi.billpayment.exception.InsufficientBalanceException;
 import com.sadeghi.billpayment.repository.AccountRepository;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -47,6 +48,9 @@ public class AccountService {
     }
 
     public void withdraw(Account account, BigDecimal price) {
+        if (account.getBalance().compareTo(price) < 0) {
+            throw new InsufficientBalanceException();
+        }
         BigDecimal newBalance = account.getBalance().subtract(price);
         account.setBalance(newBalance);
         accountRepository.save(account);
