@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 /**
@@ -36,11 +37,19 @@ public class AccountService {
      * -
      *
      * @param accountNumber Account Number
+     * @return account corresponding to given account number
      */
-    public void checkAccountIsSelfie(String accountNumber) {
+    public Account checkAccountIsSelfie(String accountNumber) {
         final UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Account account = findByUsername(userDetails.getUsername()).orElseThrow(AccountNotFoundException::new);
         if (!account.getAccountNumber().equals(accountNumber)) throw new AccountIsNotSelfieException();
+        return account;
+    }
+
+    public void withdraw(Account account, BigDecimal price) {
+        BigDecimal newBalance = account.getBalance().subtract(price);
+        account.setBalance(newBalance);
+        accountRepository.save(account);
     }
 
 }

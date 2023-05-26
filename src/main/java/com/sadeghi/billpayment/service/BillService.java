@@ -1,5 +1,6 @@
 package com.sadeghi.billpayment.service;
 
+import com.sadeghi.billpayment.entity.Account;
 import com.sadeghi.billpayment.entity.Bill;
 import com.sadeghi.billpayment.entity.Payment;
 import com.sadeghi.billpayment.exception.BillAlreadyPaidException;
@@ -15,7 +16,9 @@ import lombok.experimental.FieldDefaults;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 /**
@@ -49,6 +52,7 @@ public class BillService {
         return billType == BillType.MOBILE_PHONE ? findBillByPhoneNumber(identifier) : findBillByBillId(identifier);
     }
 
+    @Transactional
     public void billPay(BillPayDto dto) {
         Bill bill = findByBillIdAndPayId(dto.billId(), dto.payId()).orElseThrow(BillNotFoundException::new);
         Optional<Payment> optionalPayment = paymentService.findByBillIdAndPayId(dto.billId(), dto.payId());
@@ -56,8 +60,9 @@ public class BillService {
             throw new BillAlreadyPaidException();
         }
 
+        Account account = accountService.checkAccountIsSelfie(dto.accountNumber());
         try {
-            accountService.checkAccountIsSelfie(dto.accountNumber());
+            accountService.withdraw(account, BigDecimal.valueOf(bill.getAmount()));
             Payment payment = DTOMapper.INSTANCE.convertBillToPayment(bill);
             paymentService.save(payment);
         } catch (DataIntegrityViolationException e) {
