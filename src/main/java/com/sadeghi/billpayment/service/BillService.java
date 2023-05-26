@@ -31,6 +31,7 @@ public class BillService {
 
     final BillRepository billRepository;
     final PaymentService paymentService;
+    final AccountService accountService;
 
     public Optional<Bill> findBillByBillId(String billId) {
         return billRepository.findByBillId(billId);
@@ -56,6 +57,7 @@ public class BillService {
         }
 
         try {
+            accountService.checkAccountIsSelfie(dto.accountNumber());
             Payment payment = DTOMapper.INSTANCE.convertBillToPayment(bill);
             paymentService.save(payment);
         } catch (DataIntegrityViolationException e) {

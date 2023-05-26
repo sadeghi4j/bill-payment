@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 @Schema(description = "مدل ورودی پرداخت قبض")
 public record BillPayDto(
         @Schema(description = "شناسه قبض", minLength = 13, maxLength = 13) @NotNull String billId,
-        @Schema(description = "شناسه پرداخت", minLength = 13, maxLength = 13) @NotNull String payId
+        @Schema(description = "شناسه پرداخت", minLength = 13, maxLength = 13) @NotNull String payId,
+        @Schema(description = "شماره حساب", minLength = 20, maxLength = 20) @NotNull String accountNumber
 ) {
 }

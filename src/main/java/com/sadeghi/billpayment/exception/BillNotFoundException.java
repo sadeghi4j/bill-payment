@@ -7,7 +7,7 @@ package com.sadeghi.billpayment.exception;
 public class BillNotFoundException extends BusinessException {
 
     public BillNotFoundException() {
-        super(ExceptionCodes.BILL_NOT_FOUND);
+        super(ExceptionCodes.BILL_NOT_FOUND_EXCEPTION);
     }
 
 }

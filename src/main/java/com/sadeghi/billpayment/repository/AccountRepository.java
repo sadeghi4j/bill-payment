@@ -4,6 +4,8 @@ import com.sadeghi.billpayment.entity.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 /**
  * @author Ali Sadeghi
  * Created at 5/25/23 - 10:34 PM
@@ -11,5 +13,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Long> {
+
+    Optional<Account> findByUsername(String username);
 
 }

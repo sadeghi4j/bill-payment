@@ -36,7 +36,7 @@ public class ExceptionAdvice {
     @ResponseBody
     public ResponseEntity<ErrorResponse> validation(BusinessException exception) {
         log.error(exception.getMessage(), exception);
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorResponse(HttpStatus.BAD_REQUEST.value(),
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(new ErrorResponse(HttpStatus.UNPROCESSABLE_ENTITY.value(),
                 messageSource.getMessage(exception.getExceptionCode().name(), null, LocaleContextHolder.getLocale())));
     }
 

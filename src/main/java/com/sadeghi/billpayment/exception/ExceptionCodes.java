@@ -6,8 +6,10 @@ package com.sadeghi.billpayment.exception;
  */
 public enum ExceptionCodes {
 
-    BILL_NOT_FOUND,
+    BILL_NOT_FOUND_EXCEPTION,
     BILL_ALREADY_PAID_EXCEPTION,
-    BILL_PAYMENT_EXCEPTION
+    BILL_PAYMENT_EXCEPTION,
+    ACCOUNT_NOT_FOUND_EXCEPTION,
+    ACCOUNT_ID_NOT_SELFIE_EXCEPTION
 
 }
