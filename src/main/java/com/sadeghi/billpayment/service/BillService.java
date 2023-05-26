@@ -6,6 +6,7 @@ import com.sadeghi.billpayment.entity.Payment;
 import com.sadeghi.billpayment.exception.BillAlreadyPaidException;
 import com.sadeghi.billpayment.exception.BillNotFoundException;
 import com.sadeghi.billpayment.exception.BillPaymentException;
+import com.sadeghi.billpayment.exception.InProgressPaymentException;
 import com.sadeghi.billpayment.mapper.DTOMapper;
 import com.sadeghi.billpayment.model.BillPayDto;
 import com.sadeghi.billpayment.model.BillType;
@@ -15,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -65,6 +67,9 @@ public class BillService {
             accountService.withdraw(account, BigDecimal.valueOf(bill.getAmount()));
             Payment payment = DTOMapper.INSTANCE.convertBillToPayment(bill);
             paymentService.save(payment);
+        } catch (ObjectOptimisticLockingFailureException e) {
+            log.error(e);
+            throw new InProgressPaymentException();
         } catch (DataIntegrityViolationException e) {
             log.error(e);
             throw new BillAlreadyPaidException();

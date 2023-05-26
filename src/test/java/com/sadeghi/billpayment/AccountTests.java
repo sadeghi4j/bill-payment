@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @Log4j2
-class ApplicationTests extends BaseTestClass {
+class AccountTests extends BaseTestClass {
 
     static final String RIGHT_USERNAME = "username";
 

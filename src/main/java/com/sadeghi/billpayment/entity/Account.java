@@ -3,10 +3,7 @@ package com.sadeghi.billpayment.entity;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Index;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 /**
@@ -37,5 +34,8 @@ public class Account extends BaseEntity<Long> {
 
     @Column(nullable = false, precision = 19, scale = 4)
     BigDecimal balance;
+
+    @Version
+    int version;
 
 }
