@@ -1,0 +1,28 @@
+version: '3.3'
+services:
+    mysql:
+        container_name: "mysql"
+        image: mysql/mysql-server
+        environment:
+            - MYSQL_ROOT_HOST=%
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=billpayment
+        #    - MYSQL_USER=test_user
+        #    - MYSQL_PASSWORD=root
+
+        volumes:
+            - /tmp/mysql-data:/var/lib/mysql
+        ports:
+            - "3306:3306"
+#    app:
+#        container_name: bill-payment
+#        depends_on:
+#            -   mysql
+#        build: .
+#        restart: always
+#        ports:
+#            -   "8080:8080"
+#        networks:
+#            springboot-mysql-net:
+#networks:
+#    springboot-mysql-net:
